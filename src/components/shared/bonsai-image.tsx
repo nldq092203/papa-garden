@@ -17,38 +17,6 @@ export default function BonsaiImage({
   className = "",
   ...rest
 }: BonsaiImageProps) {
-  // Validate and fix image source
-  const isValidUrl = (url: string) => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  const getValidSrc = (src: string) => {
-    // If it's already a valid URL, return it
-    if (isValidUrl(src)) {
-      return src;
-    }
-    
-    // If it starts with /, it's a relative path - make it absolute
-    if (src.startsWith('/')) {
-      return src;
-    }
-    
-    // If it doesn't start with /, add it
-    if (!src.startsWith('/')) {
-      return `/${src}`;
-    }
-    
-    // Fallback to placeholder
-    return '/placeholder.svg';
-  };
-
-  const validSrc = getValidSrc(src);
-
   // aspect ratio helper
   const aspectClass =
     ratio === "square"
@@ -63,11 +31,11 @@ export default function BonsaiImage({
   if (ratio === "auto") {
     return (
       <Image
-        src={validSrc}
+        src={src}
         alt={alt ?? "Ảnh bonsai"}
         width={900}
         height={1000}
-        className={`object-cover ${className}`}
+        className={`object-contain ${className}`}
         {...rest}
       />
     );
@@ -76,13 +44,13 @@ export default function BonsaiImage({
   return (
     <div className={`relative w-full overflow-hidden ${aspectClass} ${className}`}>
       <Image
-        src={validSrc}
+        src={src}
         alt={alt ?? "Ảnh bonsai"}
         fill
         sizes="(max-width: 640px) 100vw,
                (max-width: 1024px) 50vw,
                33vw"
-        className="object-cover"
+        className="object-contain"
         {...rest}
       />
     </div>
