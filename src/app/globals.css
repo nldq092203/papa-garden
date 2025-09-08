@@ -1,26 +1,346 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Updated to use exact hex colors from the provided palette */
+  --background: #fbfbfb; /* Off-white cream background */
+  --foreground: #485935; /* Dark forest green for text */
+  --card: #fbfbfb; /* Off-white for cards */
+  --card-foreground: #485935; /* Dark forest green for card text */
+  --popover: #fbfbfb; /* Off-white for popovers */
+  --popover-foreground: #485935; /* Dark forest green for popover text */
+  --primary: #485935; /* Dark forest green primary */
+  --primary-foreground: #fbfbfb; /* Off-white text on primary */
+  --secondary: #93a267; /* Sage green secondary */
+  --secondary-foreground: #fbfbfb; /* Off-white text on secondary */
+  --muted: #cadbb7; /* Light mint green background */
+  --muted-foreground: #485935; /* Dark forest green for muted text */
+  --accent: #93a267; /* Sage green accent */
+  --accent-foreground: #fbfbfb; /* Off-white text on accent */
+  --destructive: oklch(0.55 0.2 25); /* Warm red for warnings */
+  --destructive-foreground: #fbfbfb; /* Off-white text on destructive */
+  --border: #cadbb7; /* Light mint green borders */
+  --input: #fbfbfb; /* Off-white for input fields */
+  --ring: #93a267; /* Sage green focus ring */
+  --chart-1: #485935; /* Dark forest green */
+  --chart-2: #93a267; /* Sage green */
+  --chart-3: #cadbb7; /* Light mint green */
+  --chart-4: #fbfbfb; /* Off-white */
+  --chart-5: #485935; /* Dark forest green */
+  --radius: 0.5rem;
+  --sidebar: #cadbb7; /* Light mint green sidebar */
+  --sidebar-foreground: #485935; /* Dark forest green sidebar text */
+  --sidebar-primary: #fbfbfb; /* Off-white sidebar primary */
+  --sidebar-primary-foreground: #485935; /* Dark forest green sidebar primary text */
+  --sidebar-accent: #93a267; /* Sage green sidebar accent */
+  --sidebar-accent-foreground: #fbfbfb; /* Off-white sidebar accent text */
+  --sidebar-border: #cadbb7; /* Light mint green sidebar border */
+  --sidebar-ring: #93a267; /* Sage green sidebar focus ring */
+}
+
+.dark {
+  /* Updated dark mode to use darker variations of the palette colors */
+  --background: #2a3220; /* Very dark version of forest green */
+  --foreground: #fbfbfb; /* Off-white text */
+  --card: #3a4530; /* Darker forest green card background */
+  --card-foreground: #fbfbfb; /* Off-white card text */
+  --popover: #2a3220; /* Dark forest green popover */
+  --popover-foreground: #fbfbfb; /* Off-white popover text */
+  --primary: #93a267; /* Sage green for dark mode primary */
+  --primary-foreground: #2a3220; /* Dark forest green text on primary */
+  --secondary: #485935; /* Dark forest green secondary */
+  --secondary-foreground: #fbfbfb; /* Off-white text on secondary */
+  --muted: #3a4530; /* Dark muted green background */
+  --muted-foreground: #cadbb7; /* Light mint green muted text */
+  --accent: #cadbb7; /* Light mint green accent */
+  --accent-foreground: #2a3220; /* Dark forest green accent text */
+  --destructive: oklch(0.45 0.15 25); /* Muted red for dark mode */
+  --destructive-foreground: #fbfbfb; /* Off-white destructive text */
+  --border: #485935; /* Dark forest green border */
+  --input: #3a4530; /* Dark forest green input */
+  --ring: #93a267; /* Sage green focus ring */
+  --chart-1: #93a267; /* Sage green */
+  --chart-2: #cadbb7; /* Light mint green */
+  --chart-3: #485935; /* Dark forest green */
+  --chart-4: #3a4530; /* Darker forest green */
+  --chart-5: #2a3220; /* Very dark forest green */
+  --sidebar: #3a4530; /* Dark forest green sidebar */
+  --sidebar-foreground: #fbfbfb; /* Off-white sidebar text */
+  --sidebar-primary: #93a267; /* Sage green sidebar primary */
+  --sidebar-primary-foreground: #2a3220; /* Dark forest green sidebar primary text */
+  --sidebar-accent: #cadbb7; /* Light mint green sidebar accent */
+  --sidebar-accent-foreground: #2a3220; /* Dark forest green sidebar accent text */
+  --sidebar-border: #485935; /* Dark forest green sidebar border */
+  --sidebar-ring: #93a267; /* Sage green sidebar focus ring */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Adding custom keyframe animations for bonsai image */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes gentle-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.6);
+  }
+}
+
+@keyframes scale-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Adding simplified carousel animation for simple right-to-left sliding loop */
+@keyframes simple-slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+/* Adding sliding carousel animations for Top 5 bonsai section */
+@keyframes slide-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-20%);
+  }
+  45% {
+    transform: translateX(-20%);
+  }
+  50% {
+    transform: translateX(-40%);
+  }
+  70% {
+    transform: translateX(-40%);
+  }
+  75% {
+    transform: translateX(-60%);
+  }
+  95% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(-80%);
+  }
+}
+
+@keyframes slow-slide-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-20%);
+  }
+  38% {
+    transform: translateX(-20%);
+  }
+  40% {
+    transform: translateX(-40%);
+  }
+  58% {
+    transform: translateX(-40%);
+  }
+  60% {
+    transform: translateX(-60%);
+  }
+  78% {
+    transform: translateX(-60%);
+  }
+  80% {
+    transform: translateX(-80%);
+  }
+  98% {
+    transform: translateX(-80%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gentle-rotate {
+  animation: gentle-rotate 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-scale-breathe {
+  animation: scale-breathe 5s ease-in-out infinite;
+}
+
+.animate-slide-carousel {
+  animation: slide-carousel 15s ease-in-out infinite;
+}
+
+.animate-slow-slide-carousel {
+  animation: slow-slide-carousel 20s ease-in-out infinite;
+}
+
+.animate-simple-slide-left {
+  animation: simple-slide-left 4s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile carousel scroll improvements */
+.mobile-carousel {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Full screen mobile cards */
+.mobile-card {
+  width: 100vw !important;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* Mobile Card Stacking Effects */
+@keyframes card-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes card-glow {
+  0%, 100% { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); }
+}
+
+.card-stack {
+  animation: card-float 3s ease-in-out infinite;
+}
+
+.card-stack:nth-child(1) { animation-delay: 0s; }
+.card-stack:nth-child(2) { animation-delay: 0.2s; }
+.card-stack:nth-child(3) { animation-delay: 0.4s; }
+.card-stack:nth-child(4) { animation-delay: 0.6s; }
+.card-stack:nth-child(5) { animation-delay: 0.8s; }
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
