@@ -61,36 +61,38 @@ export function MyGardenSection() {
           </div>
         </div>
 
-        {/* Location Card */}
+        {/* Location Card - Mobile Optimized */}
         <div className="max-w-10xl mx-auto">
           <Card className="bg-white/95 backdrop-blur-sm border-2 border-[#93A267]/20 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#93A267] to-[#CADBB7]"></div>
-            <CardContent className="p-12">
-              <div className="flex items-start gap-8 mb-12">
+            <CardContent className="p-4 sm:p-8 md:p-12">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 mb-6 sm:mb-12">
                 <div className="flex-shrink-0">
-                  <div className="w-20 h-20 bg-gradient-to-r from-[#93A267] to-[#CADBB7] rounded-full flex items-center justify-center shadow-xl">
-                    <MapPin className="text-white" size={32} />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-[#93A267] to-[#CADBB7] rounded-full flex items-center justify-center shadow-xl">
+                    <MapPin className="text-white" size={24} />
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-3xl md:text-4xl font-bold text-[#485935] mb-4">Địa chỉ vườn</h3>
-                  <p className="text-xl md:text-2xl text-muted-foreground mb-4">Phước Hiệp, Tuy Phước, Bình Định, Việt Nam</p>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 text-base md:text-lg text-muted-foreground">
-                    <span className="flex items-center gap-3">
-                      <div className="w-3 h-3 bg-[#93A267] rounded-full"></div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#485935] mb-3 sm:mb-4">Địa chỉ vườn</h3>
+                  <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-3 sm:mb-4">Phước Hiệp, Tuy Phước, Bình Định, Việt Nam</p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 text-sm sm:text-base md:text-lg text-muted-foreground">
+                    <span className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-2 h-2 sm:w-3 sm:h-3 bg-[#93A267] rounded-full"></div>
                       Giờ mở cửa: 8:00 – 18:00 mỗi ngày
                     </span>
-                    <span className="flex items-center gap-3">
-                      <div className="w-3 h-3 bg-[#CADBB7] rounded-full"></div>
+                    <span className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-2 h-2 sm:w-3 sm:h-3 bg-[#CADBB7] rounded-full"></div>
                       Miễn phí tham quan
                     </span>
                   </div>
                 </div>
               </div>
               
-              {/* Map Embed */}
-              <div className="mt-8">
-                <MapEmbed />
+              {/* Map Embed - Mobile Full Width */}
+              <div className="mt-4 sm:mt-8 -mx-4 sm:mx-0">
+                <div className="sm:rounded-xl overflow-hidden">
+                  <MapEmbed />
+                </div>
               </div>
             </CardContent>
           </Card>
